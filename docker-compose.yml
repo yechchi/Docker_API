@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  fastapi:  # <- Le nom IMPORTANT que les autres containers utiliseront
+    image: datascientest/fastapi:1.0.0
+    ports:
+      - "8000:8000"
+    networks:
+      - test-net
+
+  auth-test:
+    build: ./auth_test
+    environment:
+      - LOG=1
+    depends_on:
+      - fastapi
+    networks:
+      - test-net
+    volumes:
+      - ./logs:/logs
+
+  authz-test:
+    build: ./authz_test
+    environment:
+      - LOG=1
+    depends_on:
+      - fastapi
+    networks:
+      - test-net
+    volumes:
+      - ./logs:/logs
+
+  content-test:
+    build: ./content_test
+    environment:
+      - LOG=1
+    depends_on:
+      - fastapi
+    networks:
+      - test-net
+    volumes:
+      - ./logs:/logs
+
+networks:
+  test-net:
+    driver: bridge

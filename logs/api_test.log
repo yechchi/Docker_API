@@ -1,0 +1,66 @@
+
+============================
+    Authentication Test
+============================
+Request to /permissions
+| username: alice
+| password: wonderland
+Expected: 200
+Actual: 200
+==> SUCCESS
+
+============================
+    Authentication Test
+============================
+Request to /permissions
+| username: bob
+| password: builder
+Expected: 200
+Actual: 200
+==> SUCCESS
+
+============================
+    Authentication Test
+============================
+Request to /permissions
+| username: clementine
+| password: mandarine
+Expected: 403
+Actual: 403
+==> SUCCESS
+
+============================
+    Authorization Test (v1)
+============================
+User: alice
+Endpoint: /v1/sentiment
+Expected: 200
+Actual: 200
+==> SUCCESS
+
+============================
+    Authorization Test (v2)
+============================
+User: alice
+Endpoint: /v2/sentiment
+Expected: 200
+Actual: 200
+==> SUCCESS
+
+============================
+    Authorization Test (v1)
+============================
+User: bob
+Endpoint: /v1/sentiment
+Expected: 200
+Actual: 200
+==> SUCCESS
+
+============================
+    Authorization Test (v2)
+============================
+User: bob
+Endpoint: /v2/sentiment
+Expected: 403
+Actual: 403
+==> SUCCESS
